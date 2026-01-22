@@ -87,7 +87,7 @@ def send_discord(schedule_list, best_notice, current_date):
 
     # 1. 휴대폰 알림바 요약 (content)
     summary_items = ", ".join(schedule_list)
-    alert_payload_text = f"❗ **오늘의 일정: {summary_items}**"
+    alert_payload_text = f"❗ **오늘의 일정**"
 
     # 2. 본문 내용 구성 (embed description)
     # 각 일정 항목을 두껍게 강조
@@ -95,7 +95,7 @@ def send_discord(schedule_list, best_notice, current_date):
     
     # 공지사항 링크 직접 노출 (불필요한 설명 문구 제거)
     if best_notice:
-        description_content += f"\n🔗 **[{best_notice['title']}]({best_notice['link']})**"
+        description_content += f"\n**[{best_notice['title']}]({best_notice['link']})**"
     else:
         description_content += "\n🔍 **관련 공지사항 없음**"
     
@@ -104,8 +104,7 @@ def send_discord(schedule_list, best_notice, current_date):
     payload = {
         "content": alert_payload_text,
         "embeds": [{
-            "title": "❗ 오늘의 일정",
-            "description": f"{description_content}",
+            "title": f"{description_content}",
             "color": color,
             "footer": {"text": "KNU Scheduler Bot"}
         }]
