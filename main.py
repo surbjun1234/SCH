@@ -83,13 +83,14 @@ def send_discord(schedule_list, best_notice, current_date):
         print("WEBHOOK_DATE 환경변수가 없습니다.")
         return
 
-    description = join([f"• {item}" for item in schedule_list])
+    description = [f"• {item}" for item in schedule_list]
     notice_value = f"[{best_notice['title']}]({best_notice['link']})" if best_notice else "🔍 비슷한 학사공지를 찾지 못했습니다."
     color = 15158332 if best_notice else 8421504
 
     payload = {
         "embeds": [{
             "title": "❗ 오늘의 일정",
+            "description": f"{description}",
             "fields": [{"name": "🔗 관련 공지사항", "value": notice_value}],
             "color": color,
             "footer": {"text": "KNU Scheduler Bot"}
