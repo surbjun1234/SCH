@@ -104,7 +104,7 @@ def send_discord(schedule_list, best_notice, current_date):
     payload = {
         "content": alert_payload_text,
         "embeds": [{
-            "title": f"{description_content}",
+            "description": f"{description_content}",
             "color": color,
             "footer": {"text": "KNU Scheduler Bot"}
         }]
