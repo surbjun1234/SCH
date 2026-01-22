@@ -87,7 +87,7 @@ def send_discord(schedule_list, best_notice, current_date):
 
     # 1. 휴대폰 알림바에 뜰 요약 텍스트 (content)
     summary_items = ", ".join(schedule_list)
-    alert_payload_text = f"❗ **오늘의 일정: {summary_items}**"
+    alert_payload_text = f"❗ **오늘의 일정**"
 
     # 2. 디스코드 앱 내 상세 카드 (embed)
     # 각 일정 항목을 두껍게 강조
@@ -99,11 +99,10 @@ def send_discord(schedule_list, best_notice, current_date):
     payload = {
         "content": alert_payload_text, # 모바일 알림창에 노출됨
         "embeds": [{
-            "title": "📅 상세 학사일정 안내",
-            "description": f"{description_lines}\n📅 **일자: {current_date}**",
+            "title": f"{description_lines}\n**",
             "fields": [{"name": "🔗 관련 공지사항", "value": notice_value}],
             "color": color,
-            "footer": {"text": "KNU Scheduler Bot | GitHub Actions"}
+            "footer": {"text": "KNU Scheduler Bot"}
         }]
     }
     requests.post(DISCORD_WEBHOOK_URL, json=payload)
