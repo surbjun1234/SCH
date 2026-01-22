@@ -87,7 +87,7 @@ def send_discord(schedule_list, best_notice, current_date):
 
     # 1. 휴대폰 알림바 요약 (content)
     summary_items = ", ".join(schedule_list)
-    alert_payload_text = f"❗ **오늘의 일정**"
+    alert_text = f"❗ **[{current_date}] 오늘의 학사일정**"
 
     # 2. 본문 내용 구성 (embed description)
     # 각 일정 항목을 두껍게 강조
