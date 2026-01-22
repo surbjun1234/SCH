@@ -12,7 +12,7 @@ TARGET_YEAR = "2026"
 DISCORD_WEBHOOK_URL = os.environ.get("WEBHOOK_DATE") 
 
 # 실전 배포용 (None일 때 한국 시간 기준 작동)
-TEST_DATE = "1.22."
+TEST_DATE = "1.2."
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -95,7 +95,7 @@ def send_discord(schedule_list, best_notice, current_date):
     
     # 공지사항 링크 직접 노출 (불필요한 설명 문구 제거)
     if best_notice:
-        description_content += f"\n**[{best_notice['title']}]({best_notice['link']})**"
+        description_content += f"\n🔗 **[{best_notice['title']}]({best_notice['link']})**"
     else:
         description_content += "\n🔍 **관련 공지사항 없음**"
     
