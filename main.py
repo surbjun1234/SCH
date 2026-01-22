@@ -80,27 +80,32 @@ def find_best_notice(keyword):
         return None
 
 def send_discord(schedule_list, best_notice, current_date):
-    """모바일 알림창 가독성을 극대화한 전송 함수입니다."""
+    """필드 제목을 없애고 본문 내에 일정과 링크를 통합하여 전송합니다."""
     if not DISCORD_WEBHOOK_URL:
         print("WEBHOOK_DATE 환경변수가 설정되지 않았습니다.")
         return
 
-    # 1. 휴대폰 알림바에 뜰 요약 텍스트 (content)
+    # 1. 휴대폰 알림바 요약 (content)
     summary_items = ", ".join(schedule_list)
-    alert_payload_text = f"❗ **오늘의 일정**"
+    alert_payload_text = f"❗ **오늘의 일정: {summary_items}**"
 
-    # 2. 디스코드 앱 내 상세 카드 (embed)
+    # 2. 본문 내용 구성 (embed description)
     # 각 일정 항목을 두껍게 강조
-    description_lines = "".join([f"• **{item}**\n" for item in schedule_list])
+    description_content = "".join([f"• **{item}**\n" for item in schedule_list])
     
-    notice_value = f"**[{best_notice['title']}]({best_notice['link']})**" if best_notice else "🔍 비슷한 학사공지를 찾지 못했습니다."
-    color = 15158332 if best_notice else 8421504
+    # 공지사항 링크 직접 노출 (불필요한 설명 문구 제거)
+    if best_notice:
+        description_content += f"\n🔗 **[{best_notice['title']}]({best_notice['link']})**"
+    else:
+        description_content += "\n🔍 **관련 공지사항 없음**"
+    
+    color = 15158332 if best_notice else 8421504 # Crimson or Grey
 
     payload = {
-        "content": alert_payload_text, # 모바일 알림창에 노출됨
+        "content": alert_payload_text,
         "embeds": [{
-            "title": f"{description_lines}",
-            "fields": notice_value,
+            "title": "❗ 오늘의 일정",
+            "description": f"{description_content}",
             "color": color,
             "footer": {"text": "KNU Scheduler Bot"}
         }]
