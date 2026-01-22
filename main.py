@@ -12,7 +12,7 @@ TARGET_YEAR = "2026"
 DISCORD_WEBHOOK_URL = os.environ.get("WEBHOOK_DATE") 
 
 # 실전 배포용 (None일 때 한국 시간 기준 작동)
-TEST_DATE = 1.22.
+TEST_DATE = "1.22."
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
