@@ -99,8 +99,8 @@ def send_discord(schedule_list, best_notice, current_date):
     payload = {
         "content": alert_payload_text, # 모바일 알림창에 노출됨
         "embeds": [{
-            "title": f"{description_lines}\n**",
-            "fields": [{"name": "🔗 관련 공지사항", "value": notice_value}],
+            "title": f"{description_lines}",
+            "fields": notice_value,
             "color": color,
             "footer": {"text": "KNU Scheduler Bot"}
         }]
