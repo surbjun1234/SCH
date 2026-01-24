@@ -2,7 +2,7 @@ name: KNU Daily Notifier
 
 on:
   schedule:
-    - cron: '30 23 * * *' # UTC 기준 (한국 시간 오전 8시 30분 실행)
+    - cron: '37 23 * * *' # UTC 기준 (한국 시간 오전 8시 30분 실행)
   workflow_dispatch: # 수동 실행 버튼
 
 jobs:
